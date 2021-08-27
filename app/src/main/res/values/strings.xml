@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">공유 단어장</string>
+    <string name="id_text">아이디</string>
+    <string name="password_text">비밀번호</string>
+    <string name="login_button_text">로그인</string>
+    <string name="join_button_text">회원가입</string>
+    <string name="cancel_text">취소</string>
+    <string name="pass_text">확인</string>
+    <string name="logout_text">로그아웃</string>
+    <string name="look_all">모두보기</string>
+    <string name="look_my">내꺼보기</string>
+    <string name="insert_text">추가하기</string>
+    <string name="update_text">수정하기</string>
+    <string name="delete_text">삭제하기</string>
+    <string name="eng_text">영단어</string>
+    <string name="kor_text">한글</string>
+    <string name="refresh_text">새로고침</string>
+</resources>

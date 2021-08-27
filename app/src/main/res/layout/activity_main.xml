@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sc_dream8"
+        android:src="@drawable/book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="50dp"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView"
+        app:layout_constraintVertical_bias="0.25">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/idEditText"
+                android:layout_width="0dp"
+                android:textSize="16sp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/white"
+                android:fontFamily="@font/sc_dream5"
+                android:hint="@string/id_text"
+                android:paddingStart="34dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_baseline_person_24"
+                app:layout_constraintStart_toStartOf="@id/idEditText"
+                app:layout_constraintTop_toTopOf="@id/idEditText"
+                app:layout_constraintBottom_toBottomOf="@id/idEditText"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="0dp"
+                android:textSize="16sp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/white"
+                android:fontFamily="@font/sc_dream5"
+                android:hint="@string/password_text"
+                android:paddingStart="34dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_baseline_lock_24"
+                app:layout_constraintStart_toStartOf="@id/passwordEditText"
+                app:layout_constraintTop_toTopOf="@id/passwordEditText"
+                app:layout_constraintBottom_toBottomOf="@id/passwordEditText"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@color/color_logo"
+            android:fontFamily="@font/sc_dream5"
+            android:text="@string/login_button_text"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/joinButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:background="@color/color_logo"
+            android:fontFamily="@font/sc_dream5"
+            android:text="@string/join_button_text"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/idEditText"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="50dp"-->
+    <!--        android:background="#979797"-->
+    <!--        android:layout_marginBottom="10dp"-->
+    <!--        android:fontFamily="@font/sc_dream5"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/passwordEditText"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/logoImageView"-->
+    <!--        app:layout_constraintVertical_bias="0.3"-->
+    <!--        app:layout_constraintVertical_chainStyle="packed" />-->
+
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/passwordEditText"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="#979797"-->
+    <!--        android:layout_marginBottom="10dp"-->
+
+    <!--        android:fontFamily="@font/sc_dream5"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/loginButton"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/idEditText"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/idEditText"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/idEditText" />-->
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/loginButton"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="#979797"-->
+    <!--        android:layout_marginBottom="10dp"-->
+
+    <!--        android:fontFamily="@font/sc_dream5"-->
+    <!--        android:text="@string/login_button_text"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/joinButton"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/idEditText"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/idEditText"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/passwordEditText" />-->
+
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/joinButton"-->
+    <!--        android:layout_width="0dp"-->
+
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="#979797"-->
+    <!--        android:fontFamily="@font/sc_dream5"-->
+    <!--        android:text="@string/join_button_text"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/idEditText"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/idEditText"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/loginButton" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
