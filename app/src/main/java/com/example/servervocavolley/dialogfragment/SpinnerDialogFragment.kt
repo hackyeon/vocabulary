@@ -17,12 +17,9 @@ class SpinnerDialogFragment(
     private var vocaActivity: Context,
     private val vocaList: MutableList<Voca>,
     private val isDelete: Boolean
-) : DialogFragment(),
-    AdapterView.OnItemSelectedListener {
+) : DialogFragment() {
     private lateinit var binding: DialogSpinnerBinding
-    private var engList = mutableListOf<String>()
-    private var korList = mutableListOf<String>()
-    private var idxList = mutableListOf<Int>()
+    private var strList = mutableListOf<String>()
     internal lateinit var listener: SpinnerDialogListener
 
     interface SpinnerDialogListener {
@@ -43,11 +40,9 @@ class SpinnerDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         initView()
         clickedButton()
     }
-
 
     private fun initView() {
         if (isDelete) {
@@ -57,47 +52,30 @@ class SpinnerDialogFragment(
             binding.spinnerTitleTextView.text = "수정하기"
         }
 
-
-        // 혹시 몰라서 클리어하고 시작하자
-        engList.clear()
-        korList.clear()
-        idxList.clear()
-        for (i in vocaList) {
-            engList.add(i.eng)
-            korList.add(i.kor)
-            idxList.add(i.idx)
+        strList.clear()
+        vocaList.forEach {
+            strList.add("${it.eng} - ${it.kor}")
         }
 
-        var engAdapter = ArrayAdapter(
+        var adapter = ArrayAdapter(
             vocaActivity,
             R.layout.support_simple_spinner_dropdown_item,
-            engList
+            strList
         )
 
-        var korAdapter = ArrayAdapter(
-            vocaActivity,
-            R.layout.support_simple_spinner_dropdown_item,
-            korList
-        )
-
-        binding.engSpinner.adapter = engAdapter
-        binding.korSpinner.adapter = korAdapter
-        binding.engSpinner.setSelection(0)
-        binding.korSpinner.setSelection(0)
+        binding.spinner.adapter = adapter
+        binding.spinner.setSelection(0)
     }
 
     private fun clickedButton() {
-        binding.engSpinner.onItemSelectedListener = this
-        binding.korSpinner.onItemSelectedListener = this
-
         binding.passButton.setOnClickListener {
-            var position = binding.engSpinner.selectedItemPosition
+            var position = binding.spinner.selectedItemPosition
             if (isDelete) {
                 listener.spinnerClickedPassButton(
                     this,
-                    engList[position],
-                    korList[position],
-                    idxList[position]
+                    vocaList[position].eng,
+                    vocaList[position].kor,
+                    vocaList[position].idx
                 )
             } else {
                 if (binding.engEditText.text.isNotEmpty() && binding.korEditText.text.isNotEmpty()) {
@@ -105,31 +83,19 @@ class SpinnerDialogFragment(
                         this,
                         binding.engEditText.text.toString(),
                         binding.korEditText.text.toString(),
-                        idxList[position]
+                        vocaList[position].idx
                     )
                 } else {
                     listener.spinnerIsEmptyEditText(this)
                 }
             }
-
         }
 
         binding.cancelButton.setOnClickListener {
             listener.spinnerClickedCancelButton(this)
             dismiss()
         }
-
     }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        binding.engSpinner.setSelection(p2)
-        binding.korSpinner.setSelection(p2)
-
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-    }
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

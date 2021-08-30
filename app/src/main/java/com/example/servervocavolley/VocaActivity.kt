@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.edit
 import androidx.core.view.GravityCompat
@@ -105,6 +106,11 @@ class VocaActivity : AppCompatActivity(), JoinDialogFragment.JoinDialogListener,
         }
 
         binding.updateTextView.setOnClickListener {
+            if(myVocaList.size == 0) {
+                createAlertDialog("단어를 추가해주세요.")
+                return@setOnClickListener
+            }
+
             isDeleteButtonClicked = false
             SpinnerDialogFragment(this@VocaActivity, myVocaList, isDeleteButtonClicked).show(
                 supportFragmentManager,
@@ -113,6 +119,11 @@ class VocaActivity : AppCompatActivity(), JoinDialogFragment.JoinDialogListener,
         }
 
         binding.deleteTextView.setOnClickListener {
+            if(myVocaList.size == 0) {
+                createAlertDialog("단어를 추가해주세요.")
+                return@setOnClickListener
+            }
+
             isDeleteButtonClicked = true
             SpinnerDialogFragment(this@VocaActivity, myVocaList, isDeleteButtonClicked).show(
                 supportFragmentManager,
