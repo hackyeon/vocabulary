@@ -40,10 +40,6 @@ class MainActivity : AppCompatActivity(), JoinDialogFragment.JoinDialogListener 
         var password = spf.getString("password", null)
         if (id != null && password != null) {
             loginSuccess(id, password)
-        } else {
-            // todo 인터넷 관련
-            // todo 딱힐 할게없나?
-            // 여기다 queue를 미리 초기화 해도 되는지 물어보기
         }
     }
 

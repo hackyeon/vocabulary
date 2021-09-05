@@ -53,6 +53,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/cancelButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,6 +64,7 @@
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/passButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
