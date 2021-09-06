@@ -4,6 +4,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
 import com.android.volley.Request
@@ -31,6 +35,7 @@ class MainActivity : AppCompatActivity(), JoinDialogFragment.JoinDialogListener 
 
         initView()
         clickedButton()
+        onKeyListener()
     }
 
     private fun initView() {
@@ -45,37 +50,23 @@ class MainActivity : AppCompatActivity(), JoinDialogFragment.JoinDialogListener 
 
     private fun clickedButton() {
         binding.loginButton.setOnClickListener {
-            val queue = Volley.newRequestQueue(this)
-            var url = baseURL + getLogin
-
-            var stringRequest = object: StringRequest(
-                Request.Method.POST, url,
-                { response ->
-                    var result = JSONObject(response).getString("result")
-                    if (result == "OK") {
-                        createAlertDialog("로그인 성공!")
-                        loginSuccess(
-                            binding.idEditText.text.toString(),
-                            SHA256.encryptPassword(binding.passwordEditText.text.toString())
-                        )
-                    } else {
-                        createAlertDialog(JSONObject(response).getString("msg"))
-                    }
-                }, {
-                }
-            ) {
-                override fun getParams(): Map<String, String> {
-                    val params: MutableMap<String,String> = HashMap()
-                    params["user_id"] = binding.idEditText.text.toString()
-                    params["password"] = SHA256.encryptPassword(binding.passwordEditText.text.toString())
-                    return params
-                }
-            }
-            queue.add(stringRequest)
+            loadData()
         }
 
         binding.joinButton.setOnClickListener {
             joinDialogFragment.show(supportFragmentManager, "joinDialog")
+        }
+    }
+
+    private fun onKeyListener() {
+        binding.passwordEditText.setOnKeyListener { _, i, keyEvent ->
+            if (keyEvent.action == KeyEvent.ACTION_UP && i == KeyEvent.KEYCODE_ENTER) {
+                var inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+                loadData()
+                return@setOnKeyListener true
+            }
+            false
         }
     }
 
@@ -129,5 +120,35 @@ class MainActivity : AppCompatActivity(), JoinDialogFragment.JoinDialogListener 
     override fun joinRequestData(dialog: DialogFragment) {
         val message = "정보를 모두 입력하세요."
         createAlertDialog(message)
+    }
+
+    private fun loadData(){
+        val queue = Volley.newRequestQueue(this)
+        var url = baseURL + getLogin
+
+        var stringRequest = object: StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                var result = JSONObject(response).getString("result")
+                if (result == "OK") {
+                    createAlertDialog("로그인 성공!")
+                    loginSuccess(
+                        binding.idEditText.text.toString(),
+                        SHA256.encryptPassword(binding.passwordEditText.text.toString())
+                    )
+                } else {
+                    createAlertDialog(JSONObject(response).getString("msg"))
+                }
+            }, {
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                val params: MutableMap<String,String> = HashMap()
+                params["user_id"] = binding.idEditText.text.toString()
+                params["password"] = SHA256.encryptPassword(binding.passwordEditText.text.toString())
+                return params
+            }
+        }
+        queue.add(stringRequest)
     }
 }

@@ -42,6 +42,11 @@ class JoinDialogFragment(private val title: String, private val firstText: Strin
         binding.joinTextView.text = title
         binding.idEditText.hint = firstText
         binding.passwordEditText.hint = secondText
+
+        if(title == "추가하기"){
+            binding.idEditText.privateImeOptions = "defaultInputmode=english"
+            binding.passwordEditText.privateImeOptions = "defaultInputmode=korean"
+        }
     }
 
     private fun clickedButton() {

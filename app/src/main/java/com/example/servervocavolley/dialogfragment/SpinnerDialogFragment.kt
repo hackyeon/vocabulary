@@ -50,7 +50,10 @@ class SpinnerDialogFragment(
             binding.spinnerTitleTextView.text = "삭제하기"
         } else {
             binding.spinnerTitleTextView.text = "수정하기"
+            binding.engEditText.privateImeOptions = "defaultInputmode=english"
+            binding.korEditText.privateImeOptions = "defaultInputmode=korean"
         }
+
 
         strList.clear()
         vocaList.forEach {
