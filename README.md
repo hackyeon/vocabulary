@@ -8,7 +8,7 @@ kotlin 1.5.20<br>
 min api level 23
 
 ### 라이브러리
-통신: Volley
+통신: Volley<br>
 스와이프: ViewPager2
 
 ### 스크린샷
