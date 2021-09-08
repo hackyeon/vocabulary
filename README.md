@@ -19,7 +19,4 @@ min api level 23
 </div>
 
 ### 시연 영상
-<video src="https://user-images.githubusercontent.com/84886401/132452661-03804197-940b-4d23-b205-e5e0257f39ca.mp4">
-  
-  
- 
+<video src="https://user-images.githubusercontent.com/84886401/132458701-948fb56b-0df1-4462-a399-dcde7ae0b79e.mp4">
